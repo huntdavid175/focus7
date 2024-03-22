@@ -20,15 +20,17 @@ int main(void)
                 return -2;
             }
         }
+
+        if (fclose(fp) != 0)
+        {
+            printf("Cannot close file");
+            return -1;
+        }
     }
     else
     {
         printf("File not opened");
-    }
-
-    if (fclose(fp) != 0)
-    {
-        printf("Cannot close file");
+        return -1;
     }
 
     // Binary File open
@@ -41,15 +43,25 @@ int main(void)
         {
             if (kBinaryData[i] % 2 == 0)
             {
-                fwrite(&kBinaryData[i], sizeof(unsigned short), 1, fpb);
+                size_t element_written = fwrite(&kBinaryData[i], sizeof(unsigned short), 1, fpb);
+                if (element_written < 1)
+                {
+                    printf("File not written");
+                    return -1;
+                }
             }
         }
 
-        fclose(fpb);
+        if (fclose(fpb) != 0)
+        {
+            printf("Cannot close file");
+            return -1;
+        }
     }
     else
     {
         printf("Binary file not opened");
+        return -1;
     }
 
     return 0;
