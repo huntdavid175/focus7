@@ -2,14 +2,14 @@
 
 int main(void)
 {
-    FILE *fp = NULL;
+    FILE *fp = NULL; // File pointer for text file
 
-    FILE *fpb = NULL;
+    FILE *fpb = NULL; // File pointer for binary file
 
     const unsigned short kBinaryData[] = {26946, 24942, 31090,
                                           25632, 29793, 8289, 28518, 8306, 28537, 33141, 39308};
 
-    if ((fp = fopen("text.txt", "w")) != NULL)
+    if ((fp = fopen("myTextFile.txt", "w")) != NULL)
     {
 
         for (int i = 0; i < 2; i++)
@@ -35,7 +35,7 @@ int main(void)
 
     // Binary File open
 
-    if ((fpb = fopen("binarylist.data", "wb")) != NULL)
+    if ((fpb = fopen("myEvenDataList.data", "wb")) != NULL)
     {
         int lengthOfArray = sizeof(kBinaryData) / sizeof(kBinaryData[0]);
 
